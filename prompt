@@ -1,0 +1,36 @@
+echo "from datetime import datetime
+
+
+def get_day_name():
+    date_obj = datetime.utcnow()
+    day_name = date_obj.strftime('%A')
+    return day_name" > main.py
+
+git add main.py
+git commit -m "feat: Day name function"
+git tag -a v0 HEAD -m "Tag message"
+git push origin main --tags
+
+git tag -d v0
+git push --delete origin v0
+git tag -a 0.1.0 HEAD -m "Day name functionality"
+git push origin main --tags
+
+echo "
+
+def get_month_name():
+   date_obj = datetime.utcnow()
+   month_name = date_obj.strftime('%m')
+   return month_name" >> main.py
+git add main.py
+git commit -m "feat: Month names"
+git tag -a 0.2.0 HEAD -m "Month name functionality"
+git push origin main --tags
+
+sed -i "12s/.*/month_name = date_obj.strftime('%B')/" main.py
+git add main.py
+git commit -m "fix: Bug fix month name"
+git tag -a 0.2.1 HEAD -m "Month name bug fix"
+git push origin main --tags
+
+git tag -n9
